@@ -30,3 +30,8 @@ print(x.grad) # dz/dx
 
 # !!! Careful!!! backward() accumulates the gradient for this tensor into .grad attribute.
 # !!! We need to be careful during optimization !!! optimizer.zero_grad()
+
+# During the training loop when we want to update our weights, or after training during evaluation. These operations should not be part of the gradient computation. To prevent this, we can use:
+# x.requires_grad_(False)
+# x.detach()
+# wrap in with torch.no_grad():
